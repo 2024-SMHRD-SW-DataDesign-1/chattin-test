@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.smhrd.myapp.mapper.MemberMapper">
+  		<insert id="memberJoin" parameterType="com.smhrd.myapp.model.MavenMember">
+  			insert into mavenmember values (#{id}, #{pw}, #{nickname})
+  		</insert>
+  		
+  		<select id="memberLogin" parameterType="com.smhrd.myapp.model.MavenMember" resultType="com.smhrd.myapp.model.MavenMember">
+  			select * from mavenmember where id=#{id} and pw=#{pw}
+  		</select>
+  	
+<!--	
+	 	<delete id="memberDelete">
+			delete from mavenmember where id=#{id}
+		</delete>
+ -->
+  </mapper>
