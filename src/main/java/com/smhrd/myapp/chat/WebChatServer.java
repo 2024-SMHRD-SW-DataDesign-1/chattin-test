@@ -24,10 +24,8 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.smhrd.myapp.MemberController;
 import com.smhrd.myapp.model.Log;
 import com.smhrd.myapp.model.MavenMember;
-import com.smhrd.myapp.service.MemberService;
 
 
 
@@ -37,8 +35,6 @@ public class WebChatServer extends HttpServlet {
 	private static Map<Session,String> users = Collections.synchronizedMap(new HashMap<Session, String>());
 	private static Map<Session, String> sessionChatIdMap = Collections.synchronizedMap(new HashMap<>());
 	
-	private MemberController memberController;
-
 	// 클라이언트가 웹 소켓 서버에 연결될 때 호출됩니다.
 	@OnOpen
 	public void onOpen(Session session, @PathParam("chatId") String chatId) throws IOException{
@@ -62,7 +58,6 @@ public class WebChatServer extends HttpServlet {
 	public void onMsg(String message, Session session) throws IOException{
 		String userName = users.get(session);
 		String chatId = sessionChatIdMap.get(session);
-		Log save = new Log(chatId,userName,message);
 		
 		synchronized (users) {
 			for (Session currentSession : users.keySet()) {

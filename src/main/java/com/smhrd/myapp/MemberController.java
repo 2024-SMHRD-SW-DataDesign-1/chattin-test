@@ -9,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smhrd.myapp.model.Chat;
 import com.smhrd.myapp.model.Log;
@@ -142,9 +144,10 @@ public class MemberController {
 	}
 
 	// 로그 저장
-	public void saveLog(Log log) {
-		int res = service.saveLog(log);
-		System.out.println("Save log result: " + res);
+	@RequestMapping(value = "/chat/send", method =RequestMethod.POST)
+	public @ResponseBody void saveLog(@RequestBody Log chatLog) {
+		int res = service.saveLog(chatLog);
+		System.out.println(res);
 	}
 
 //	@RequestMapping(value="/member/addchat", method=RequestMethod.POST)
