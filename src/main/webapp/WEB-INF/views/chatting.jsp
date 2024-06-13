@@ -118,12 +118,14 @@
 </body>
 <script type="text/javascript">
 	
-
+	var chatId = "${chatId}";
+	console.log(chatId);
+	
 	var textarea = document.getElementById("messageWindow");
 //	var webSocket = new WebSocket('ws://ec2-13-125-250-66.ap-northeast-2.compute.amazonaws.com:8080/DevEricServers/webChatServer');
 	
 	// 로컬에서 테스트할 때 사용하는 URL입니다.
- 	var webSocket = new WebSocket("ws://" + document.location.host + "/myapp/chat");
+ 	var webSocket = new WebSocket("ws://" + document.location.host + "/anitingcopy/chat/"+chatId);
 	//var webSocket = new WebSocket('ws://http://localhost:8089/myapp/member/addchat');
 	var inputMessage = document.getElementById('inputMessage');
 	
@@ -131,6 +133,7 @@
 		onError(e);
 	};
 	webSocket.onopen = function(e){
+		console.log("열림")
 		onOpen(e);
 	};
 	webSocket.onmessage = function(e){
@@ -167,9 +170,7 @@
 		if(chatMsg == ''){
 			return;
 		}
-		var date = new Date();
-		var dateInfo = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-		var $chat = $("<div class='my-chat-box'>111<div class='chat my-chat'>" + chatMsg + "</div><div class='chat-info'>"+ dateInfo +"</div></div>");
+		var $chat = $("<div class='my-chat-box'>1<div class='chat my-chat'>" + chatMsg + "</div></div>");
 		$('#chat-container').append($chat);
 		webSocket.send(chatMsg);
 		inputMessage.value = "";

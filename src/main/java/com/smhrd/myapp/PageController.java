@@ -1,6 +1,8 @@
 package com.smhrd.myapp;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -34,9 +36,15 @@ public class PageController {
 		return "member/list";
 	}
 	
-	@RequestMapping(value="/chat", method=RequestMethod.GET)
-	public String chat() {
+	@RequestMapping(value="/chatting/{chatId}", method=RequestMethod.GET)
+	public String chatting(@PathVariable("chatId") String chatId, Model model) {
+		model.addAttribute("chatId", chatId);
 		return "chatting";
+	}
+	
+	@RequestMapping(value="/chatList", method=RequestMethod.GET)
+	public String chatList() {
+		return "chatList";
 	}
 }
 

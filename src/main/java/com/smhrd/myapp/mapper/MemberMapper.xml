@@ -6,11 +6,11 @@
   
   <mapper namespace="com.smhrd.myapp.mapper.MemberMapper">
   		<insert id="memberJoin" parameterType="com.smhrd.myapp.model.MavenMember">
-  			insert into mavenmember values (#{id}, #{pw}, #{nickname})
+  			insert into USERS (ID,PW,NICKNAME,ADDRESS,E_MAIL) values (#{id}, #{pw}, #{nickname}, #{address}, #{email})
   		</insert>
   		
   		<select id="memberLogin" parameterType="com.smhrd.myapp.model.MavenMember" resultType="com.smhrd.myapp.model.MavenMember">
-  			select * from mavenmember where id=#{id} and pw=#{pw}
+  			select * from USERS where id=#{id} and pw=#{pw}
   		</select>
   	
 <!--	

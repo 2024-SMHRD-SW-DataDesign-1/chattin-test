@@ -11,9 +11,9 @@
 	   <!-- hikariConfig.setUsername("root") -->
 	   <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 	      <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-	      <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/maven?serverTimezone=UTC"/>
-	      <property name="username" value="root"/>
-	      <property name="password" value="1234"/>
+	      <property name="jdbcUrl" value="jdbc:mysql://project-db-cgi.smhrd.com:3307/campus_24SW_DD_p2_3?serverTimezone=UTC"/>
+	      <property name="username" value="campus_24SW_DD_p2_3"/>
+	      <property name="password" value="smhrd3"/>
 	   </bean>   
 	   
 	   <!-- Datasource 빈 등록 : Spring 통해서 MySQL에 접근 -->

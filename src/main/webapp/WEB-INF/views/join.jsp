@@ -13,6 +13,8 @@
       ID : <input type="text" name="id"><br>
       PASSWORD : <input type="password" name="pw"><br>
       NICKNAME : <input type="text" name="nickname"><br>
+      ADDRESS : <input type="text" name="address"><br>
+      E_MAIL : <input type="text" name="email"><br>
       <input type="submit" value="회원가입">
    </form>
 </body>
