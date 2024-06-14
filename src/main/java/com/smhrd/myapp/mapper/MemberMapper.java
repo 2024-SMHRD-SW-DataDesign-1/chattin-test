@@ -32,18 +32,5 @@ public interface MemberMapper {
 //	@Insert("insert into mavenmember values (#{id}, #{pw}, #{nickname})")
 //	public int chatAdd(String log);
 	
-	@Insert("insert into CHAT (sendId,receiveId) value (#{sendId},#{receiveId})")
-	public int chat(Chat chat);
 	
-	@Select("select * from CHAT where sendId=#{id}")
-	public List<Chat> chatlist(String id);
-	
-	@Select("select * from CHAT where receiveId=#{id}")
-	public List<Chat> receivelist(String id);
-	
-	@Update("update CHAT set accept=1 where receiveId=#{receiveId}")
-	public int accept(String receiveId);
-	
-	@Insert("insert into chatLog (chatId,sendId,log) value (#{chatId},#{sendId},#{log}")
-	public int saveLog(Log save);
 }

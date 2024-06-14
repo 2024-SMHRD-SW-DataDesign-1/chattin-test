@@ -41,13 +41,13 @@ public class WebChatServer extends HttpServlet {
 
 		HttpSession httpSession = (HttpSession) session.getUserProperties().get("httpSession");
 		MavenMember member = (MavenMember) httpSession.getAttribute("member");
-		String userId = member.getId();
+		String userId = member.getU_id();
 		
 		System.out.println(chatId);
 		
 		users.put(session, userId);
 		sessionChatIdMap.put(session, chatId);
-		sendNotice(chatId,userId+"이 입장하셨습니다.");
+		//sendNotice(chatId,userId+"이 입장하셨습니다.");
 		
 		
 		
@@ -64,7 +64,7 @@ public class WebChatServer extends HttpServlet {
 	            String sessionChatId = sessionChatIdMap.get(currentSession);
 	            if (!currentSession.equals(session)) {
 	            	if (sessionChatId != null && sessionChatId.equals(chatId)) {
-	            		currentSession.getBasicRemote().sendText(userName + " : " + message);
+	            		currentSession.getBasicRemote().sendText(message);
 	            		
 	            	}
 	            }
@@ -80,7 +80,7 @@ public class WebChatServer extends HttpServlet {
 		String chatId = sessionChatIdMap.get(session);
 		users.remove(session);
 		sessionChatIdMap.remove(session);
-		sendNotice(chatId, userName + "님이 퇴장하셨습니다. 현재 사용자 " + users.size() + "명");
+		//sendNotice(chatId, userName + "님이 퇴장하셨습니다. 현재 사용자 " + users.size() + "명");
 	}
 	
 	public void sendNotice(String chatId, String message) throws IOException{

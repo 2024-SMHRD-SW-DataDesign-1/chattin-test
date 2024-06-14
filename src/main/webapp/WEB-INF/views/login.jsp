@@ -8,8 +8,8 @@
 </head>
 <body>
 	<form action="member/login" method="post">
-		ID : <input type="text" name="id">
-		PW : <input type="password" name="pw">
+		ID : <input type="text" name="u_id">
+		PW : <input type="password" name="u_pw">
 		
 		<input type="submit" value="로그인">
 	</form>

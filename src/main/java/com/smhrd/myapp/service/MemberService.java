@@ -55,24 +55,6 @@ public class MemberService {
 //		return mapper.chatAdd(log);
 //	}
 	
-	public int chat(Chat chat) {
-		return mapper.chat(chat);
-	}
 	
-	public List<Chat> chatlist(String id) {
-		return mapper.chatlist(id);
-	}
-	
-	public List<Chat> receivelist(String id) {
-		return mapper.receivelist(id);
-	}
-	
-	public int accept(String receiveId) {
-		return mapper.accept(receiveId);
-	}
-	
-	public int saveLog(Log save) {
-		return mapper.saveLog(save);
-	}
 	
 }
