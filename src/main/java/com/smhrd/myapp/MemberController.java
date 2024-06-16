@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smhrd.myapp.model.Chat;
 import com.smhrd.myapp.model.Log;
 import com.smhrd.myapp.model.MavenMember;
@@ -44,6 +47,7 @@ public class MemberController {
 	public String memberLogin(@ModelAttribute MavenMember member, HttpSession session) {
 
 		MavenMember result = service.memberLogin(member);
+		System.out.println(result.getU_id());
 		if (result != null) {
 			System.out.println("로그인 성공");
 			session.setAttribute("member", result);
@@ -112,43 +116,10 @@ public class MemberController {
 //
 //	}
 
-	// 채팅요청
-	@RequestMapping(value = "/member/call", method = RequestMethod.POST)
-	public String call(@RequestParam("receiveId") String receiveId, HttpSession session) {
-		MavenMember member = (MavenMember) session.getAttribute("member");
-		Chat chat = new Chat();
-		chat.setSendId(member.getId());
-		chat.setReceiveId(receiveId);
-		System.out.println(chat.getSendId());
-		System.out.println(chat.getReceiveId());
-		int res = service.chat(chat);
-		return "redirect:/index";
-	}
-
-	// 채팅목록 출력
-	@RequestMapping(value = "/member/chatlist/{id}", method = RequestMethod.GET)
-	public String chatlist(@PathVariable("id") String id, Model model) {
-		List<Chat> sendlist = service.chatlist(id);
-		List<Chat> receivelist = service.receivelist(id);
-
-		model.addAttribute("chatlist", sendlist);
-		model.addAttribute("receivelist", receivelist);
-		return "chatList";
-	}
-
-	// 채팅 요청 수락
-	@RequestMapping(value = "/member/accept/{receiveId}", method = RequestMethod.GET)
-	public String chatlist(@PathVariable("receiveId") String receiveId) {
-		service.accept(receiveId);
-		return "redirect:/member/chatlist/" + receiveId;
-	}
-
-	// 로그 저장
-	@RequestMapping(value = "/chat/send", method =RequestMethod.POST)
-	public @ResponseBody void saveLog(@RequestBody Log chatLog) {
-		int res = service.saveLog(chatLog);
-		System.out.println(res);
-	}
+	
+	
+	
+	
 
 //	@RequestMapping(value="/member/addchat", method=RequestMethod.POST)
 //	public String chatAdd(@RequestParam("log")String log)

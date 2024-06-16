@@ -121,6 +121,9 @@
 	console.log(chatId);
 	<% MavenMember member = (MavenMember)session.getAttribute("member");%>
 	
+	$(document).ready(function(){
+		readLog()
+	})
 
 	var textarea = document.getElementById("messageWindow");
 	//	var webSocket = new WebSocket('ws://ec2-13-125-250-66.ap-northeast-2.compute.amazonaws.com:8080/DevEricServers/webChatServer');
@@ -160,9 +163,47 @@
 		$('#chat-container').scrollTop(
 				$('#chat-container')[0].scrollHeight + 20);
 	}
-
+	
 	function onOpen(e) {
-		console.log("연결 완료");
+		
+	}
+	
+	function readLog() {
+		
+		var userIdFromJSP = "<%=member.getU_id()%>";
+		
+		var importLog = {
+				chatId : chatId,
+			};
+		
+		$.ajax({
+	        type: "POST",
+	        url: "/anitingcopy/chat/roadLog",
+	        data: JSON.stringify(importLog),
+	        contentType: "application/json; charset=utf-8",
+	        dataType:"json",
+	        success: function(response) {
+	        	$.each(response, (index,vo)=> { //data : boardlist / vo : Board
+	        		console.log(vo.sendId)
+	        		console.log(userIdFromJSP)
+	        		
+	        		 if (vo.sendId === userIdFromJSP) {
+	                     var $chat = $("<div class='my-chat-box'><div class='chat my-chat'>" + vo.log + "</div></div>");
+	                     $('#chat-container').append($chat);
+	                 } else {
+	                     var $chat = $("<div class='chat-box'><div class='chat'>" + vo.log + "</div></div>");
+	                     $('#chat-container').append($chat);
+	                 }
+	    		})	    		
+	    		
+	            inputMessage.value = "";
+	            $('#chat-container').scrollTop($('#chat-container')[0].scrollHeight + 20);
+	        },
+	        error: function(xhr, status, error) {
+	            console.error("Error sending message: ", status, error);
+	        }
+		 });
+	
 	}
 
 	function onError(e) {
@@ -178,7 +219,7 @@
 		
 		var chatLog = {
 			chatId : chatId,
-			sendId : "<%=member.getId()%>",
+			sendId : "<%=member.getU_id()%>",
 			log : chatMsg
 		};
 		console.log("test");
@@ -186,7 +227,7 @@
 	        type: "POST",
 	        url: "/anitingcopy/chat/send",
 	        data: JSON.stringify(chatLog),
-	        contentType: "application/json",
+	        contentType: "application/json; charset=utf-8",
 	        success: function(response) {
 	            var $chat = $("<div class='my-chat-box'><div class='chat my-chat'>" + chatMsg + "</div></div>");
 	            $('#chat-container').append($chat);
@@ -212,7 +253,10 @@
 		$('#chat-container').scrollTop(
 				$('#chat-container')[0].scrollHeight + 20); */
 	}
+	
 </script>
+
+
 
 <script type="text/javascript">
 	$(function() {

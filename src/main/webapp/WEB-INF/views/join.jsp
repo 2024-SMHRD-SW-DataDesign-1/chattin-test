@@ -10,11 +10,11 @@
 	<!-- 현재 위치 : localhost:8089/myapp/join -->
 	<!-- 회원가입 : localhost:8089/myapp/member/join -->
    <form action="member/join" method="post">
-      ID : <input type="text" name="id"><br>
-      PASSWORD : <input type="password" name="pw"><br>
-      NICKNAME : <input type="text" name="nickname"><br>
-      ADDRESS : <input type="text" name="address"><br>
-      E_MAIL : <input type="text" name="email"><br>
+      ID : <input type="text" name="u_id"><br>
+      PASSWORD : <input type="password" name="u_pw"><br>
+      NICKNAME : <input type="text" name="u_nickname"><br>
+      ADDRESS : <input type="text" name="u_address"><br>
+      E_MAIL : <input type="text" name="u_email"><br>
       <input type="submit" value="회원가입">
    </form>
 </body>

@@ -22,11 +22,11 @@
 		</tr>
 		<%for(MavenMember m:list) {%>
 			<tr>
-				<td><%= m.getId() %></td>
-				<td><%= m.getPw() %></td>
-				<td><%= m.getNickname() %></td>
+				<td><%= m.getU_id() %></td>
+				<td><%= m.getU_pw() %></td>
+				<td><%= m.getU_nickname() %></td>
 				<!-- 파라미터는 경로 자체에 포함하는 방법 -->
-				<td><a href="/myapp/member/delete/<%= m.getId() %>">삭제</a></td>
+				<td><a href="/myapp/member/delete/<%= m.getU_id() %>">삭제</a></td>
 			</tr>
 		<%} %>
 	</table>

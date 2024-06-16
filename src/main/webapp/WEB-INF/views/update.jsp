@@ -12,9 +12,9 @@
 	<!-- 현재 경로 : localhost:8089/myapp/update -->
 	<!-- 요청 경로 : localhost:8089/myapp/member/update -->
 	   <form action="update" method="post">
-      ID : <input type="text" name="id" value="<% member.getId(); %>"><br>
-      PASSWORD : <input type="password" name="pw"><br>
-      NICKNAME : <input type="text" name="nickname" value="<% member.getNickname(); %>" ><br>
+      ID : <input type="text" name="u_id" value="<% member.getU_id(); %>"><br>
+      PASSWORD : <input type="password" name="u_pw"><br>
+      NICKNAME : <input type="text" name="u_nickname" value="<% member.getU_nickname(); %>" ><br>
       <input type="submit" value="회원가입">
    </form>
 </body>
